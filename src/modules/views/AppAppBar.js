@@ -25,6 +25,9 @@ const styles = (theme) => ({
     alignItems: 'center',
     textTransform: 'uppercase',
     fontFamily: "'Roboto', sans-serif",
+    '& img': {
+      width: '40px',
+    },
     [theme.breakpoints.down('sm')]: {
       fontSize: '20px',
       '& img': {
@@ -125,8 +128,7 @@ function AppAppBar(props) {
               className={classes.title}
               to="/"
             >
-              <img src={Logo} alt="Applant" className={classes.iconRoot} />
-              {'Applant'}
+              <img src={Logo} alt="Shop" className={classes.iconRoot} />
             </Link>
             <div className={classes.left} />
             <div className={classes.right}>
