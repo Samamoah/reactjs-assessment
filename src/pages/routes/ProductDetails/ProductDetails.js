@@ -397,6 +397,7 @@ function Index() {
                   {size}
                 </Typography>
               </Grid>
+              <Typography className={classes.color}>Quantity</Typography>
               <ButtonGroup
                 size="small"
                 aria-label="small outlined button group"

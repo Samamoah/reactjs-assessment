@@ -5,6 +5,16 @@ export default (state, action) => {
         ...state,
         cart: action.payload,
       };
+    case 'ADD_COUPON':
+      return {
+        ...state,
+        coupon: action.payload,
+      };
+    case 'DELETE_COUPON':
+      return {
+        ...state,
+        coupon: action.payload,
+      };
     default:
       return state;
     // break;

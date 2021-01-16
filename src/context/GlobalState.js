@@ -5,6 +5,8 @@ import AppReducer from './AppReducer';
 
 const initialState = {
   cart: JSON.parse(localStorage.getItem('cart')) || [],
+  coupon: localStorage.getItem('coupon') || '',
+  discountCode: 'xyz123',
 };
 
 export const GlobalContext = createContext(initialState);
@@ -35,9 +37,34 @@ export const GlobalProvider = ({ children }) => {
       payload: newCart,
     });
   }
+  function addCoupon(data) {
+    localStorage.setItem('coupon', data);
+    dispatch({
+      type: 'ADD_COUPON',
+      payload: data,
+    });
+  }
+  function removeCoupon() {
+    localStorage.removeItem('coupon');
+    dispatch({
+      type: 'DELETE_COUPON',
+      payload: '',
+    });
+  }
   function deleteFromCart(data) {
     var cart = state.cart;
-    var newCart = cart.filter((item) => item.id !== data);
+    var newCart = cart.filter((item) => {
+      if (item.id === data.id) {
+        if (item.color === data.color) {
+          if (item.size === data.size) {
+            return false;
+          }
+          return true;
+        }
+        return true;
+      }
+      return true;
+    });
     localStorage.setItem('cart', JSON.stringify(newCart));
     dispatch({
       type: 'LOAD_CART',
@@ -59,8 +86,12 @@ export const GlobalProvider = ({ children }) => {
     <GlobalContext.Provider
       value={{
         cart: state.cart,
+        coupon: state.coupon,
+        discountCode: state.discountCode,
         addToCart,
         deleteFromCart,
+        removeCoupon,
+        addCoupon,
         updateCartItem,
       }}
     >

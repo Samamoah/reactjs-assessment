@@ -134,6 +134,18 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '16px',
     color: 'black',
   },
+  couponInput: {
+    border: '0',
+    borderRadius: '0px',
+    padding: '8px 5px',
+  },
+  couponButton: {
+    border: '0',
+    borderRadius: '0px',
+    cursor: 'pointer',
+    padding: '5px',
+    color: '#EA501F',
+  },
 }));
 
 function CartItem({ item }) {
@@ -198,7 +210,7 @@ function CartItem({ item }) {
                 <Button
                   className={classes.deleteButton}
                   onClick={() => {
-                    deleteFromCart(item.id);
+                    deleteFromCart(item);
                   }}
                 >
                   {' '}
@@ -235,14 +247,36 @@ function CartItem({ item }) {
 function Index() {
   const classes = useStyles();
 
-  const { cart } = useContext(GlobalContext);
+  const {
+    cart,
+    addCoupon,
+    removeCoupon,
+    coupon: matchCoupon,
+    discountCode,
+  } = useContext(GlobalContext);
+
+  const [coupon, setCoupon] = useState('');
 
   const history = useHistory();
 
+  function submitCoupon() {
+    addCoupon(coupon);
+    setCoupon('');
+  }
+  function deleteCoupon() {
+    removeCoupon();
+    setCoupon('');
+  }
   if (cart.length > 0) {
-    var totalset = cart
+    var totalAmount = 0;
+    var subTotal = cart
       .map((item) => item.price * item.quantity)
       .reduce((a, b) => a + b);
+    if (matchCoupon === discountCode) {
+      totalAmount = subTotal * 0.5;
+    } else {
+      totalAmount = subTotal;
+    }
   }
 
   return (
@@ -305,17 +339,48 @@ function Index() {
                 >
                   <Typography className={classes.key}>Sub Total</Typography>
                   <Typography className={classes.amount}>
-                    GH¢ {totalset ? totalset.toFixed(2) : 0.0}
+                    GH¢ {subTotal ? subTotal.toFixed(2) : 0.0}
                   </Typography>
                 </Grid>
                 <Grid
                   container
-                  style={{ margin: '10px 0' }}
                   justify="space-between"
+                  style={{ margin: '10px 0' }}
                 >
-                  <Typography className={classes.key}>Tax</Typography>
-                  <Typography className={classes.amount}>GH¢ 0</Typography>
+                  <Typography className={classes.key}>Discount</Typography>
+                  <Typography className={classes.amount}>
+                    {discountCode === matchCoupon ? '50%' : '0%'}
+                  </Typography>
                 </Grid>
+
+                {/* <Typography className={classes.key}>Coupon</Typography> */}
+                {discountCode !== matchCoupon ? (
+                  <div style={{ margin: '10px 0', display: 'flex' }}>
+                    <input
+                      type="text"
+                      value={coupon}
+                      placeholder="Enter Coupon"
+                      className={classes.couponInput}
+                      onChange={(e) => {
+                        setCoupon(e.target.value);
+                      }}
+                    />
+                    <button
+                      className={classes.couponButton}
+                      onClick={submitCoupon}
+                    >
+                      Add Coupon
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    className={classes.couponButton}
+                    onClick={deleteCoupon}
+                  >
+                    Remove Coupon
+                  </button>
+                )}
+
                 <Divider style={{ margin: '5px 0' }} />
                 <Grid
                   container
@@ -324,7 +389,7 @@ function Index() {
                 >
                   <Typography className={classes.key}>Total</Typography>
                   <Typography className={classes.amount}>
-                    GH¢ {totalset ? totalset.toFixed(2) : 0.0}
+                    GH¢ {totalAmount ? totalAmount.toFixed(2) : 0.0}
                   </Typography>
                 </Grid>
                 <Button

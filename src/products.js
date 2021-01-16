@@ -1,5 +1,4 @@
 import brazilFront from './images/brazil.jpg';
-import brazilBack from './images/brazil2.jpg';
 import brazilBlue from './images/brazilblue.jpg';
 import bryantBack from './images/bryant.jpg';
 import bryantFront from './images/bryant2.jpg';
@@ -59,12 +58,6 @@ var products = [
             medium: brazilFront,
             small: brazilFront,
             thumbnail: brazilFront,
-          },
-          {
-            large: brazilBack,
-            medium: brazilBack,
-            small: brazilBack,
-            thumbnail: brazilBack,
           },
         ],
       },
