@@ -12,11 +12,22 @@ export const GlobalContext = createContext(initialState);
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
-  //  const history = useHistory();
   function addToCart(data) {
     var cart = state.cart;
 
-    var filteredCart = cart.filter((item) => item.id !== data.id);
+    // replace item with the same id color and size
+    var filteredCart = cart.filter((item) => {
+      if (item.id === data.id) {
+        if (item.color === data.color) {
+          if (item.size === data.size) {
+            return false;
+          }
+          return true;
+        }
+        return true;
+      }
+      return true;
+    });
     var newCart = [data, ...filteredCart];
     localStorage.setItem('cart', JSON.stringify(newCart));
     dispatch({

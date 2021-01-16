@@ -85,14 +85,12 @@ const styles = (theme) => ({
     flex: 1,
     display: 'flex',
     justifyContent: 'flex-end',
+    alignItems: 'center',
   },
   rightLink: {
-    fontSize: 14,
+    fontSize: 16,
     color: '#000000',
-    marginLeft: 88,
-    verticalAlign: 'middle',
-    display: 'inline-block',
-    lineHeight: '48px',
+    marginRight: '10px',
     textTransform: 'capitalize',
     fontWeight: 600,
   },
@@ -132,6 +130,15 @@ function AppAppBar(props) {
             </Link>
             <div className={classes.left} />
             <div className={classes.right}>
+              <Link
+                component={NavLink}
+                underline="none"
+                exact={true}
+                to="/cart"
+                className={classes.rightLink}
+              >
+                Cart
+              </Link>
               <Link
                 component={NavLink}
                 underline="none"

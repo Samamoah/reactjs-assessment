@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useParams, Redirect } from 'react-router-dom';
+import { useParams, Redirect, useHistory } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -199,12 +199,16 @@ const useStyles = makeStyles((theme) => ({
     margin: '1px',
     borderRadius: '50px',
 
-    border: '0.5px solid lightgray',
+    border: '1px solid lightgray',
     fontSize: 16,
   },
   colorButtonContainer: {
     border: '2px solid #002B5C',
+  },
+
+  colorBtn: {
     borderRadius: '50px',
+    marginRight: 5,
   },
 }));
 
@@ -212,8 +216,11 @@ function Index() {
   const classes = useStyles();
   const [imageFit] = useState('cover');
   const [size, setSize] = useState('small');
-  const { slug } = useParams();
+  const [color, setColor] = useState(0);
   const [counter, setCounter] = useState(1);
+
+  const { slug } = useParams();
+  const history = useHistory();
 
   const { addToCart } = useContext(GlobalContext);
 
@@ -237,14 +244,15 @@ function Index() {
     var cartItem = {
       id: product.id,
       slug: product.slug,
-      image: product.primaryImage.URLs.large,
-      color: product.primaryImage.color,
+      image: product.primaryImage[color].URLs[0].large,
+      color: product.primaryImage[color].color,
       name: product.title,
       price: product.pricing.displayPrice,
       size,
       quantity: counter,
     };
     addToCart(cartItem);
+    history.push('/cart');
   }
 
   function galleryImages(urls) {
@@ -278,7 +286,7 @@ function Index() {
                 showFullscreenButton={false}
                 showPlayButton={false}
                 startIndex={0}
-                items={galleryImages(product.primaryImage.URLs)}
+                items={galleryImages(product.primaryImage[color].URLs)}
                 renderItem={(item) => renderItem(item, imageFit)}
               />
             </Grid>
@@ -315,13 +323,24 @@ function Index() {
               <Typography className={classes.amount}>
                 GH¢ {product.pricing.displayPrice}
               </Typography>
-              <Grid container>
-                <div className={classes.colorButtonContainer}>
-                  <Typography
-                    className={classes.colorButton}
-                    style={{ background: `${product.primaryImage.color}` }}
-                  />
-                </div>
+              <Grid container alignItems="center">
+                {product.primaryImage.map((image, index) => (
+                  <div
+                    key={index}
+                    className={classnames(
+                      classes.colorBtn,
+                      index === color && classes.colorButtonContainer
+                    )}
+                  >
+                    <Typography
+                      onClick={() => {
+                        setColor(index);
+                      }}
+                      className={classes.colorButton}
+                      style={{ background: `${image.color}` }}
+                    />
+                  </div>
+                ))}
               </Grid>
               <Grid container className={classes.colorContainer}>
                 <Typography className={classes.color}>Color:</Typography>
@@ -330,7 +349,7 @@ function Index() {
                   style={{ marginLeft: 3, textTransform: 'capitalize' }}
                 >
                   {' '}
-                  {product.primaryImage.color}
+                  {product.primaryImage[color].color}
                 </Typography>
               </Grid>
               <Grid container style={{ marginBottom: '5px' }}>
