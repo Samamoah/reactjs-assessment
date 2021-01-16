@@ -35,6 +35,30 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '40px',
     color: '#002b5c',
   },
+  color: {
+    fontSize: 12,
+    lineHeight: '15px',
+    color: '#002b5c',
+  },
+  colorContainer: {
+    margin: '2px 0',
+  },
+  colorButton: {
+    width: '30px',
+    height: '30px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: '1px',
+    borderRadius: '50px',
+
+    border: '1px solid lightgray',
+    fontSize: 16,
+  },
+  colorButtonContainer: {
+    border: '2px solid #002B5C',
+    borderRadius: '50px',
+  },
   button: {
     background: 'rgb(0, 43, 92)',
     color: 'white',
@@ -118,18 +142,15 @@ function CartItem({ item }) {
 
   const amount = item.price * counter;
 
- 
   var handleIncrement = () => {
-    var newCounter = counter + 1
+    var newCounter = counter + 1;
     setCounter(newCounter);
     updateCartItem(item, newCounter);
   };
 
-  
   var handleDecrement = () => {
     if (counter > 1) {
-      
-    var newCounter = counter - 1
+      var newCounter = counter - 1;
       setCounter(newCounter);
       updateCartItem(item, newCounter);
     }
@@ -151,6 +172,26 @@ function CartItem({ item }) {
               <Link to={`/${item.slug}`} className={classes.productName}>
                 {item.name}
               </Link>
+              <Grid container className={classes.colorContainer}>
+                <Typography className={classes.color}>Color:</Typography>
+                <Typography
+                  className={classes.color}
+                  style={{ marginLeft: 3, textTransform: 'capitalize' }}
+                >
+                  {' '}
+                  {item.color}
+                </Typography>
+              </Grid>
+              <Grid container className={classes.colorContainer}>
+                <Typography className={classes.color}>Size:</Typography>
+                <Typography
+                  className={classes.color}
+                  style={{ marginLeft: 3, textTransform: 'capitalize' }}
+                >
+                  {' '}
+                  {item.size}
+                </Typography>
+              </Grid>
               <div>
                 <Button
                   className={classes.deleteButton}

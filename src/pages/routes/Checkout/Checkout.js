@@ -296,6 +296,18 @@ function Index() {
                     </Grid>
                   </Grid>
                 </div>
+                <div style={{ width: '85%', margin: '30px 0px 20px' }}>
+                  <Typography className={classes.sectionTitle}>
+                    Payment Method
+                  </Typography>
+                  <Typography>Mobile Money</Typography>
+                  <Input
+                    classes={{ root: classes.input, input: classes.underline }}
+                    fullWidth
+                    placeholder="Number"
+                    type="number"
+                  />
+                </div>
               </Grid>
             </Grid>
             <Grid item xs={4}>
