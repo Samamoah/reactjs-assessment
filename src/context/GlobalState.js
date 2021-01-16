@@ -16,7 +16,7 @@ export const GlobalProvider = ({ children }) => {
   function addToCart(data) {
     var cart = state.cart;
 
-    var filteredCart = cart.filter((item) => item.slug !== data.slug);
+    var filteredCart = cart.filter((item) => item.id !== data.id);
     var newCart = [data, ...filteredCart];
     localStorage.setItem('cart', JSON.stringify(newCart));
     dispatch({
@@ -26,7 +26,7 @@ export const GlobalProvider = ({ children }) => {
   }
   function deleteFromCart(data) {
     var cart = state.cart;
-    var newCart = cart.filter((item) => item.slug !== data);
+    var newCart = cart.filter((item) => item.id !== data);
     localStorage.setItem('cart', JSON.stringify(newCart));
     dispatch({
       type: 'LOAD_CART',

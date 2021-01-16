@@ -13,6 +13,8 @@ import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import classnames from 'classnames';
 
+import Helmet from 'react-helmet';
+
 const useStyles = makeStyles((theme) => ({
   container: {
     padding: '0 40px',
@@ -152,6 +154,7 @@ function Index() {
   return (
     <React.Fragment>
       <Container>
+        <Helmet title="Checkout" />
         <div className={classnames(classes.main)}>
           <div>
             <Grid container alignItems="center">

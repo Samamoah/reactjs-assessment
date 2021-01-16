@@ -16,6 +16,8 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import classnames from 'classnames';
 
+import Helmet from 'react-helmet';
+
 const useStyles = makeStyles((theme) => ({
   container: {
     padding: '0 40px',
@@ -169,7 +171,7 @@ function CartItem({ item }) {
               justify="space-between"
               direction="column"
             >
-              <Link to={`/${item.slug}`} className={classes.productName}>
+              <Link to={`/shop/${item.slug}`} className={classes.productName}>
                 {item.name}
               </Link>
               <Grid container className={classes.colorContainer}>
@@ -196,7 +198,7 @@ function CartItem({ item }) {
                 <Button
                   className={classes.deleteButton}
                   onClick={() => {
-                    deleteFromCart(item.slug);
+                    deleteFromCart(item.id);
                   }}
                 >
                   {' '}
@@ -246,6 +248,7 @@ function Index() {
   return (
     <React.Fragment>
       <Container>
+        <Helmet title="Cart" />
         <div className={classnames(classes.main)}>
           <div>
             <Grid container alignItems="center">

@@ -1,24 +1,23 @@
-import withRoot from '../../../modules/withRoot';
-import { renderItem } from '../../../modules/components/renderers';
-import products from '../../../products';
 import React, { useState, useContext } from 'react';
-import ImageGallery from 'react-image-gallery';
-import _ from 'lodash';
-
-import { GlobalContext } from '../../../context/GlobalState';
-
 import { useParams, Redirect } from 'react-router-dom';
+import Helmet from 'react-helmet';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Star from '@material-ui/icons/Star';
 import Typography from '@material-ui/core/Typography';
 import classnames from 'classnames';
-import './image-gallery.css';
 import Button from '@material-ui/core/Button';
+import ImageGallery from 'react-image-gallery';
+import _ from 'lodash';
+
+import withRoot from '../../../modules/withRoot';
+import { renderItem } from '../../../modules/components/renderers';
+import products from '../../../products';
+import { GlobalContext } from '../../../context/GlobalState';
+import './image-gallery.css';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -45,9 +44,9 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 10,
   },
   amount: {
-    fontSize: 18,
+    fontSize: 22,
     fontWeight: 700,
-    lineHeight: '22px',
+    lineHeight: '25px',
     color: '#002b5c',
     marginBottom: 15,
     marginTop: 10,
@@ -199,6 +198,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     margin: '1px',
     borderRadius: '50px',
+
+    border: '0.5px solid lightgray',
     fontSize: 16,
   },
   colorButtonContainer: {
@@ -234,6 +235,7 @@ function Index() {
 
   function buy() {
     var cartItem = {
+      id: product.id,
       slug: product.slug,
       image: product.primaryImage.URLs.large,
       color: product.primaryImage.color,
@@ -260,6 +262,7 @@ function Index() {
   return (
     <React.Fragment>
       <Container>
+        <Helmet title={product.title} />
         <div className={classnames(classes.main, classes.productPage)}>
           <div>
             <Grid container alignItems="center">

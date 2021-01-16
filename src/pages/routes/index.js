@@ -17,7 +17,7 @@ var indexRoutes = [
     exact: true,
   },
   {
-    path: '/:slug',
+    path: '/shop/:slug',
     component: ProductDetails,
     exact: true,
   },
