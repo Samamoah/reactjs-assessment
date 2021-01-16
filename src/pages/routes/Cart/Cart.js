@@ -129,6 +129,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     color: 'black',
   },
+  error: {
+    color: 'red',
+  },
   key: {
     fontSize: 12,
     lineHeight: '16px',
@@ -140,6 +143,14 @@ const useStyles = makeStyles((theme) => ({
     padding: '8px 5px',
   },
   couponButton: {
+    border: '0',
+    borderRadius: '0px',
+    cursor: 'pointer',
+    padding: '5px',
+    background: '#EA501F',
+    color: 'white',
+  },
+  couponDeleteButton: {
     border: '0',
     borderRadius: '0px',
     cursor: 'pointer',
@@ -354,8 +365,11 @@ function Index() {
                 </Grid>
 
                 {/* <Typography className={classes.key}>Coupon</Typography> */}
+                {coupon && coupon !== discountCode && (
+                  <p className={classes.error}>wrong code</p>
+                )}
                 {discountCode !== matchCoupon ? (
-                  <div style={{ margin: '10px 0', display: 'flex' }}>
+                  <div style={{ margin: '0 0 10px', display: 'flex' }}>
                     <input
                       type="text"
                       value={coupon}
@@ -368,13 +382,14 @@ function Index() {
                     <button
                       className={classes.couponButton}
                       onClick={submitCoupon}
+                      disabled={coupon !== discountCode}
                     >
                       Add Coupon
                     </button>
                   </div>
                 ) : (
                   <button
-                    className={classes.couponButton}
+                    className={classes.couponDeleteButton}
                     onClick={deleteCoupon}
                   >
                     Remove Coupon
