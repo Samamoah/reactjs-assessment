@@ -175,11 +175,21 @@ const useStyles = makeStyles((theme) => ({
     width: '40px',
     height: '40px',
     display: 'flex',
+    minWidth: '0px',
+    fontWeight: 400,
+    borderRadius: '0px',
     alignItems: 'center',
     justifyContent: 'center',
     background: '#F7F7F7',
     fontSize: 16,
     marginRight: 10,
+  },
+  selectedSize: {
+    background: '#002B5C',
+    color: 'white',
+    '&:hover': {
+      background: '#002B5C',
+    },
   },
   colorButton: {
     width: '30px',
@@ -200,6 +210,7 @@ const useStyles = makeStyles((theme) => ({
 function Index() {
   const classes = useStyles();
   const [imageFit] = useState('cover');
+  const [size, setSize] = useState('small');
   const { slug } = useParams();
   const [counter, setCounter] = useState(1);
 
@@ -225,8 +236,10 @@ function Index() {
     var cartItem = {
       slug: product.slug,
       image: product.primaryImage.URLs.large,
+      color: product.primaryImage.color,
       name: product.title,
       price: product.pricing.displayPrice,
+      size,
       quantity: counter,
     };
     addToCart(cartItem);
@@ -254,7 +267,7 @@ function Index() {
               <ChevronRightIcon style={{ width: '20px' }} />
               <Typography className={classes.text}>New</Typography>
               <ChevronRightIcon style={{ width: '20px' }} />
-              <Typography className={classes.text}>Boys</Typography>
+              <Typography className={classes.text}>Shirts</Typography>
             </Grid>
           </div>
           <Grid container spacing={3}>
@@ -312,18 +325,58 @@ function Index() {
               </Grid>
               <Grid container className={classes.colorContainer}>
                 <Typography className={classes.color}>Color:</Typography>
-                <Typography className={classes.color} style={{ marginLeft: 3 }}>
+                <Typography
+                  className={classes.color}
+                  style={{ marginLeft: 3, textTransform: 'capitalize' }}
+                >
                   {' '}
                   {product.primaryImage.color}
                 </Typography>
               </Grid>
               <Grid container style={{ marginBottom: '5px' }}>
-                <Typography className={classes.size}>s</Typography>
-                <Typography className={classes.size}>l</Typography>
-                <Typography className={classes.size}>xl</Typography>
+                <Button
+                  className={classnames(
+                    classes.size,
+                    size === 'small' && classes.selectedSize
+                  )}
+                  onClick={() => {
+                    setSize('small');
+                  }}
+                >
+                  s
+                </Button>
+                <Button
+                  className={classnames(
+                    classes.size,
+                    size === 'large' && classes.selectedSize
+                  )}
+                  onClick={() => {
+                    setSize('large');
+                  }}
+                >
+                  l
+                </Button>
+                <Button
+                  className={classnames(
+                    classes.size,
+                    size === 'X large' && classes.selectedSize
+                  )}
+                  onClick={() => {
+                    setSize('X large');
+                  }}
+                >
+                  xl
+                </Button>
               </Grid>
               <Grid container className={classes.colorContainer}>
-                <Typography className={classes.color}>Size</Typography>
+                <Typography className={classes.color}>Size:</Typography>
+                <Typography
+                  className={classes.color}
+                  style={{ marginLeft: 3, textTransform: 'capitalize' }}
+                >
+                  {' '}
+                  {size}
+                </Typography>
               </Grid>
               <ButtonGroup
                 size="small"
