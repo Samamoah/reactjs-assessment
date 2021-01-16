@@ -247,14 +247,11 @@ function Index() {
     addToCart(cartItem);
   }
 
-  function galleryImages(image) {
-    var images = [];
-    var productImage = {
+  function galleryImages(urls) {
+    var images = urls.map((image) => ({
       original: image.large,
       thumbnail: image.thumbnail,
-    };
-
-    images.push(productImage);
+    }));
 
     return images;
   }

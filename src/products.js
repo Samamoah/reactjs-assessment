@@ -1,5 +1,7 @@
 import Image from './images/bryant.jpg';
 import Image1 from './images/brazil.jpg';
+import Image2 from './images/brazil2.jpg';
+import Image3 from './images/bryant2.jpg';
 
 var products = [
   {
@@ -8,12 +10,20 @@ var products = [
     title: "Laker's Kobe Bryant 24 jersey",
     primaryImage: {
       color: 'white',
-      URLs: {
-        large: Image,
-        medium: Image,
-        small: Image,
-        thumbnail: Image,
-      },
+      URLs: [
+        {
+          large: Image,
+          medium: Image,
+          small: Image,
+          thumbnail: Image,
+        },
+        {
+          large: Image3,
+          medium: Image3,
+          small: Image3,
+          thumbnail: Image3,
+        },
+      ],
     },
     pricing: {
       compareAtPrice: null,
@@ -27,12 +37,20 @@ var products = [
     title: 'Brazil Nike Home Jersey 2014',
     primaryImage: {
       color: 'yellow',
-      URLs: {
-        large: Image1,
-        medium: Image1,
-        small: Image1,
-        thumbnail: Image1,
-      },
+      URLs: [
+        {
+          large: Image1,
+          medium: Image1,
+          small: Image1,
+          thumbnail: Image1,
+        },
+        {
+          large: Image2,
+          medium: Image2,
+          small: Image2,
+          thumbnail: Image2,
+        },
+      ],
     },
     pricing: {
       compareAtPrice: null,
