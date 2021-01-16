@@ -387,14 +387,6 @@ function Index() {
                   <Typography className={classes.key}>Shipping</Typography>
                   <Typography className={classes.subTotal}>GH¢ 0</Typography>
                 </Grid>
-                <Grid
-                  container
-                  style={{ margin: '10px 0' }}
-                  justify="space-between"
-                >
-                  <Typography className={classes.key}>Tax</Typography>
-                  <Typography className={classes.subTotal}>GH¢ 0</Typography>
-                </Grid>
                 <Divider style={{ margin: '5px 0' }} />
                 <Grid
                   container
