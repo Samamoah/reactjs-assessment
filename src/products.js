@@ -1,6 +1,7 @@
-import bryantBack from './images/bryant.jpg';
 import brazilFront from './images/brazil.jpg';
 import brazilBack from './images/brazil2.jpg';
+import brazilBlue from './images/brazilblue.jpg';
+import bryantBack from './images/bryant.jpg';
 import bryantFront from './images/bryant2.jpg';
 import bryantPurple from './images/bryantpurple.webp';
 
@@ -49,23 +50,36 @@ var products = [
     id: 'f1f940ce-f1c8-47cd-9ddf-cb5e29b97522',
     slug: 'brazil-nike-home-jersey-2014',
     title: 'Brazil Nike Home Jersey 2014',
-    primaryImage: {
-      color: 'yellow',
-      URLs: [
-        {
-          large: brazilFront,
-          medium: brazilFront,
-          small: brazilFront,
-          thumbnail: brazilFront,
-        },
-        {
-          large: brazilBack,
-          medium: brazilBack,
-          small: brazilBack,
-          thumbnail: brazilBack,
-        },
-      ],
-    },
+    primaryImage: [
+      {
+        color: 'yellow',
+        URLs: [
+          {
+            large: brazilFront,
+            medium: brazilFront,
+            small: brazilFront,
+            thumbnail: brazilFront,
+          },
+          {
+            large: brazilBack,
+            medium: brazilBack,
+            small: brazilBack,
+            thumbnail: brazilBack,
+          },
+        ],
+      },
+      {
+        color: 'blue',
+        URLs: [
+          {
+            large: brazilBlue,
+            medium: brazilBlue,
+            small: brazilBlue,
+            thumbnail: brazilBlue,
+          },
+        ],
+      },
+    ],
     pricing: {
       compareAtPrice: null,
       currency: { code: 'GHS' },
