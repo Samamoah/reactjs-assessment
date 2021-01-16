@@ -1,7 +1,7 @@
-import Image from './images/bryant.jpg';
-import Image1 from './images/brazil.jpg';
-import Image2 from './images/brazil2.jpg';
-import Image3 from './images/bryant2.jpg';
+import bryantBack from './images/bryant.jpg';
+import brazilFront from './images/brazil.jpg';
+import brazilBack from './images/brazil2.jpg';
+import bryantFront from './images/bryant2.jpg';
 
 var products = [
   {
@@ -12,16 +12,16 @@ var products = [
       color: 'white',
       URLs: [
         {
-          large: Image,
-          medium: Image,
-          small: Image,
-          thumbnail: Image,
+          large: bryantBack,
+          medium: bryantBack,
+          small: bryantBack,
+          thumbnail: bryantBack,
         },
         {
-          large: Image3,
-          medium: Image3,
-          small: Image3,
-          thumbnail: Image3,
+          large: bryantFront,
+          medium: bryantFront,
+          small: bryantFront,
+          thumbnail: bryantFront,
         },
       ],
     },
@@ -39,23 +39,23 @@ var products = [
       color: 'yellow',
       URLs: [
         {
-          large: Image1,
-          medium: Image1,
-          small: Image1,
-          thumbnail: Image1,
+          large: brazilFront,
+          medium: brazilFront,
+          small: brazilFront,
+          thumbnail: brazilFront,
         },
         {
-          large: Image2,
-          medium: Image2,
-          small: Image2,
-          thumbnail: Image2,
+          large: brazilBack,
+          medium: brazilBack,
+          small: brazilBack,
+          thumbnail: brazilBack,
         },
       ],
     },
     pricing: {
       compareAtPrice: null,
       currency: { code: 'GHS' },
-      displayPrice: '200.00',
+      displayPrice: '150.00',
     },
   },
 ];
